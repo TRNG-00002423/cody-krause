@@ -21,3 +21,15 @@ print(f"  {'True + True':<12}= {True + True}")
 
 print("\nPrecision Gotcha:")
 print(f"  {'0.1 + 0.2':<12}= {0.1 + 0.2} (not exactly 0.3!)")
+
+
+print("\nDifference between == and is:")
+str1 = "hello"
+str2 = "world"
+str3 = "".join(["he", "llo"])
+
+print("str1 = 'hello', str2 = 'world', str3 = 'hello'")
+print(f"  {'str1 == str2':<12}= {str1 == str2}")
+print(f"  {'str1 is str2':<12}= {str1 is str2}")
+print(f"  {'str1 == str3':<12}= {str1 == str3}")
+print(f"  {'str1 is str3':<12}= {str1 is str3}")
