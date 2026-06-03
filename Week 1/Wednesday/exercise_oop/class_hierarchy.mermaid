@@ -1,0 +1,53 @@
+classDiagram
+    class TestCase {
+        %% Class Attributes
+        + total_created : int$
+
+        %% Instance Attributes
+        + name : str
+        + description : str
+        + priority : str
+        + tags : List~str~
+
+        %% Methods
+        + __init__(self, name, description, priority, tags) TestCase
+        + from_dict(cls, data : Dictionary) TestCase
+        + run(self) str
+        + is_valid_name(name : str) bool$
+    }
+
+    class TestResult {
+        %% Instance Attributes
+        + test_name : str
+        + status : str
+        + duration_ms : float
+        + error_message : str?
+
+        %% Methods
+        + __init__(self, test_name, status, duration_ms, error_message)
+        + summary(self) str
+    }
+
+    class TestSuite {
+        %%Instance Attributes
+        + name : str
+        + tests : List~TestCase~
+
+        %% Methods
+        + __init__(self, name, tests)
+        + add_test(self, test : TestCase) None
+        + remove_test(self, name : str) None
+        + get_by_priority(self, priority : str) List~TestCase~
+        + count(self) int
+    }
+
+    class TestRunner {
+        %% Methods
+        + run(suite : TestSuite) List~TestResult~$
+        + summary(results : List~TestResult~) None$
+    }
+
+    %% Relationships
+    TestSuite *-- TestCase
+    TestRunner o-- TestSuite
+    TestRunner o-- TestResult
