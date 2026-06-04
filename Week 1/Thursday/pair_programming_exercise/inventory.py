@@ -54,11 +54,11 @@ class Inventory:
             product = self.get_product(product_id)
         except KeyError:
             raise ProductNotFoundError(product_id)
-        finally:
-            if product.stock < quantity:
-                raise InsufficientStockError(product.name, quantity, product.stock)
-            product.stock -= quantity
-            self.history.append(f"SELL: {quantity}x {product.name} (ID={product_id})")
+        
+        if product.stock < quantity:
+            raise InsufficientStockError(product.name, quantity, product.stock)
+        product.stock -= quantity
+        self.history.append(f"SELL: {quantity}x {product.name} (ID={product_id})")
         
     def restock(self, product_id: int, quantity: int) -> None:
         try:
@@ -77,14 +77,14 @@ class Inventory:
         Hint: Use __contains__ dunder on Product — "keyword" in product
         Use a list comprehension over self.products.values().
         """
-        return [product for product in self.products if product.contains(keyword)]
+        return [product for product in self.products.values() if (keyword in product)]
 
     def by_category(self, category: str) -> list[Product]:
         """Return all products in the given category (case-insensitive).
 
         Use a list comprehension. Compare category.lower() to product.category.lower().
         """
-        return [product for product in self.products if product.category.lower() == category.lower()]
+        return [product for product in self.products.values() if product.category.lower() == category.lower()]
 
     def in_stock(self) -> list[Product]:
         """Return all products with stock > 0.
@@ -92,14 +92,14 @@ class Inventory:
         Hint: Use __bool__ dunder on Product — bool(product) is True if in stock.
         Use a list comprehension with the bool() check.
         """
-        return [product for product in self.products if bool(product)]
+        return [product for product in self.products.values() if bool(product)]
 
     def price_range(self, min_price: float, max_price: float) -> list[Product]:
         """Return products priced between min_price and max_price (inclusive).
 
         Use a list comprehension.
         """
-        return [product for product in self.products if product >= min_price and product <= max_price]
+        return [product for product in self.products.values() if product >= min_price and product <= max_price]
 
     def summary(self) -> dict:
         """Return a summary dictionary of the inventory.
@@ -115,9 +115,9 @@ class Inventory:
         Use dict/list/generator comprehensions — avoid raw for loops.
         """
         total_products = len(self.products)
-        total_value = sum(product.price * product.stock for product in self.products) 
+        total_value = sum(product.price * product.stock for product in self.products.values()) 
         categories = sorted(set(self.products))
-        out_of_stock_count = [product for product in self.products if not bool(product)]
+        out_of_stock_count = [product for product in self.products.values() if not bool(product)]
         
         return {
             "total_products" : total_products,
