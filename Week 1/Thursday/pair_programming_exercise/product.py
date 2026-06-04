@@ -34,40 +34,49 @@ class Product:
     total_products = 0  # Class attribute — shared across all instances
 
     def __init__(self, name: str, price: float, stock: int = 0, category: str = "general"):
-        # TODO: Store all parameters as instance attributes.
-        # TODO: Increment Product.total_products by 1.
-        pass
+        self.name = name
+        self.price = price
+        self.stock = stock
+        self.category = category
+        
+        Product.total_products += 1
 
     def __str__(self) -> str:
-        # TODO: Return "Laptop ($999.99) — 15 in stock"
-        pass
+        return f"{self.name} (${self.price}) - {self.stock} in stock"
 
     def __repr__(self) -> str:
         # TODO: Return "Product('Laptop', 999.99, stock=15, category='electronics')"
-        pass
+        return f"Product('{self.name}', {self.price}, stock={self.stock}, category='{self.category}')"
 
     def __eq__(self, other) -> bool:
-        # TODO: Two products are equal if name AND category match (case-insensitive).
-        # Hint: check isinstance(other, Product) first.
-        pass
+        if not isinstance(other, Product):
+            return False
+        
+        if other.name == self.name and other.category == self.category:
+            return True
+        else:
+            return False
 
     def __hash__(self) -> int:
-        # TODO: Return hash((self.name.lower(), self.category.lower()))
-        # Required because we defined __eq__ — Python removes __hash__ by default.
-        pass
+        return hash((self.name.lower(), self.category.lower()))
 
     def __lt__(self, other) -> bool:
-        # TODO: Compare by price. Enables sorted(list_of_products).
-        pass
+        if other.price < self.price:
+            return True
+        else:
+            return False
 
     def __bool__(self) -> bool:
-        # TODO: Return True if stock > 0, False if out of stock.
-        pass
+        if self.stock > 0:
+            return True
+        else:
+            return False
 
     def __contains__(self, item: str) -> bool:
-        # TODO: Return True if item (string) is a substring of self.name (case-insensitive).
-        # Enables: "laptop" in product
-        pass
+        if self.name.lower().find(item) != -1:
+            return True
+        else:
+            return False
 
 
 # ── Validation ───────────────────────────────────────────────────────────────
