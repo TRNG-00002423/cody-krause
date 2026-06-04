@@ -1,0 +1,35 @@
+classDiagram
+    class LoginService {
+        <<Service>>
+        attempt_login() Session?
+    }
+
+    class Session {
+        user_id : int
+    }
+    
+    class Expense {
+        id : int
+        user_id : int
+        amount : float
+        description : str
+        date : DateTime
+    }
+
+    class Approval {
+        id : int
+        expense_id : int
+        status : StatusEnum
+        reviewer : int?
+        comment : str?
+        review_date : DateTime?
+    }
+
+    class StatusEnum {
+        <<enumeration>>
+        PENDING
+        APPROVED
+        DENIED
+    }
+
+    Approval o-- StatusEnum
