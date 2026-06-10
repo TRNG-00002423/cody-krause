@@ -1,0 +1,26 @@
+# Bug fixes (rename to BUGFIXES.md and fill in)
+
+## Bug 1
+- **Symptom: java.lang.NullPointerException: Cannot invoke "String.trim()" because "user" is null**
+- **Root cause: String.trim() is attempted to be performed on a null variable.**
+- **Fix: Add check for null user, if so set user to empty string ""**
+
+## Bug 2
+- **Symptom: Inverted comparison between roleLevel and required level.**
+- **Root cause: The comparison symbol is flipped the wrong way.**
+- **Fix: Flip the comparison symbol from < to >=**
+
+## Bug 3
+- **Symptom: an int is used in double division, so the division does not have floating-point precision.**
+- **Root cause: a sum is set to int instead of a double **
+- **Fix: set the int variable "sum" as a double.**
+
+## Bug 4
+- **Symptom: Always returns -1 when should return first case of number.**
+- **Root cause: there is no return statement for the value.**
+- **Fix: add a return statement.**
+
+## Bug 5
+- **Symptom: java.lang.ArrayIndexOutOfBoundsException: Index 3 out of bounds for length 3**
+- **Root cause: <= is used when iterating a list in a for loop instead of <**
+- **Fix: change <= to < to ensure array stays in bounds**
