@@ -1,4 +1,12 @@
-from abc import ABC
+from abc import ABC, abstractmethod
 
 class Menu(ABC):
-    pass
+    @staticmethod
+    @abstractmethod
+    def open():
+        ...
+    
+    @staticmethod
+    @abstractmethod
+    def exit():
+        ...
