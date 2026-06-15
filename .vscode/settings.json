@@ -1,9 +1,10 @@
 {
     "java.configuration.updateBuildConfiguration": "interactive",
     "java.project.sourcePaths": [
+        "Week 3/Tuesday/exercise_oop_hierarchy",
         "Week 3/Monday/exercise_classes",
         "Week 3/Monday/exercise_arrays_loops",
         "Week 2/Thursday/pair-submission",
-        "Week 3/Tuesday/exercise_oop_hierarchy"
+        "Week 3/Tuesday/exercise_equals_hashcode"
     ]
 }
