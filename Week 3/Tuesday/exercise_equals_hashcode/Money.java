@@ -48,6 +48,6 @@ public final class Money {
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("TODO");
+        return amountMinor + " of " + currency;
     }
 }
