@@ -23,6 +23,16 @@ class MenuHelper():
         print("-" * MenuHelper.WIDTH_2)
     
     @staticmethod
+    def display_header_2_with_menu(menu_name : str, text : str):
+        text = text.strip()
+        menu_name = menu_name.strip()
+        menu_name = "[" + menu_name + "]"
+        print("-" * MenuHelper.WIDTH_2)
+        print(menu_name.center(MenuHelper.WIDTH_2), " ")
+        print(text.center(MenuHelper.WIDTH_2, " "))
+        print("-" * MenuHelper.WIDTH_2)
+    
+    @staticmethod
     def display_numbered_list(ls : list):
         for i, v in enumerate(ls, start=1):
             print(f"{i}. {v}")
