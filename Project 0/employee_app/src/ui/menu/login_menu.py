@@ -1,7 +1,8 @@
 from ui.menu.menu import Menu
 from ui.helper.menu_helper import MenuHelper
 from services.login_service import LoginService
-from database.database import get_connection
+from models.user import User
+from ui.menu.main_menu import MainMenu
 
 class LoginMenu(Menu):
     on_startup = True
@@ -39,13 +40,13 @@ class LoginMenu(Menu):
         password = input("Password: ")
         
         
-        ls = LoginService(get_connection())
+        ls = LoginService()
         usr = ls.attempt_login(username, password)
         
-        if usr == None:
-            print("Login failed.")
-        else:
+        if isinstance(usr, User):
             print("Login Successful!")
+            mm = MainMenu(usr)
+            mm.open()
     
     
     def _exit(self):

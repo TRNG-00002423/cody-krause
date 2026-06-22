@@ -54,14 +54,8 @@ classDiagram
     class MainMenu {
         + open()
         - _submit_expense()
-        - _open_submission_menu()
-        - _exit()
-    }
-
-    class SubmissionMenu {
-        + open()
+        - _view_expense_history()
         - _open_pending_submission_menu()
-        - _view_history()
         - _exit()
     }
 
@@ -88,15 +82,13 @@ classDiagram
 
     class UserRepository {
         get_user_from_id(id : int)
-        get_user_from_password(password : str)
+        get_user_from_login_info(username : str, password : str)
         add_or_update_user(user : User)
     }
 
     class ExpenseRepository {
         get_expense_from_id(id : int)
         get_expenses_from_user_id(user_id : int)
-        get_expenses_count()
-        get_all_expenses()
         add_or_update_expense(expense : Expense)
         delete_expense(expense : Expense)
     }
@@ -116,17 +108,14 @@ classDiagram
 
     Menu <|-- LoginMenu
     Menu <|-- MainMenu
-    Menu <|-- SubmissionMenu
     Menu <|-- PendingSubmissionMenu
 
     Main o-- LoginMenu
     LoginMenu o-- MainMenu
-    MainMenu o-- SubmissionMenu
-    SubmissionMenu o-- PendingSubmissionMenu
+    MainMenu o-- PendingSubmissionMenu
 
     LoginMenu o-- MenuHelper
     MainMenu o-- MenuHelper
-    SubmissionMenu o-- MenuHelper
     PendingSubmissionMenu o-- MenuHelper
 
     LoginMenu o-- LoginService
