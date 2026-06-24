@@ -8,7 +8,10 @@ DB_PATH = BASE_DIR / "database" / "database.db"
 SCHEMA_PATH = BASE_DIR / "database" / "schema.sql"
 
 def get_connection():
-    return sqlite3.connect(DB_PATH)
+    con = sqlite3.connect(DB_PATH)
+    con.execute("PRAGMA foreign_keys = ON")
+    con.commit()
+    return con
 
 def init_db():
     db_exists = os.path.exists(DB_PATH)

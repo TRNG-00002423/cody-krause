@@ -36,6 +36,6 @@ class Approval:
 
     def __str__(self):
         if self.status == Status.PENDING:
-            return f"Approval ID {self.id} of Expense ID {self.expense_id}:\n - Status: {self.status}"
+            return f"Approval ID {self.id} of Expense ID {self.expense_id}:\n - Status: {self.status.name}"
         else:
-            return f"Approval ID {self.id} of Expense ID {self.expense_id}:\n - Status: {self.status}\n - Reviewer ID {self.reviewer_id} commented: {self.comment}\n - Date: {self.review_date.strftime("%d/%m/%Y, %H:%M:%S")}"
+            return f"Approval ID {self.id} of Expense ID {self.expense_id}:\n - Status: {self.status.name}\n - Reviewer ID {self.reviewer_id} commented: {self.comment}\n - Date: {self.review_date.strftime("%d/%m/%Y, %H:%M:%S")}"

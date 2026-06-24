@@ -63,7 +63,7 @@ class ApprovalRepository:
         if raw_approval_data == None:
             # add
             db_cur.execute("INSERT INTO approvals (expense_id, status, reviewer_id, comment, review_date) VALUES (?, ?, ?, ?, ?)", 
-                   (approval.expense_id, approval.status.name, approval.reviewer_id, approval.comment, datetime.isoformat(datetime.now())))
+                   (approval.expense_id, approval.status.name, approval.reviewer_id, approval.comment, None))
         else:
             # update
             db_cur.execute("UPDATE approvals SET expense_id = ?, status = ?, reviewer_id = ?, comment = ?, review_date = ? WHERE id = ?", 
