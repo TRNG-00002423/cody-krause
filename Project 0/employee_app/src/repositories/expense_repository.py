@@ -15,6 +15,7 @@ class ExpenseRepository:
         if raw_expense_data == None:
             raise NotFoundException("Expense ID does not exist.")
         
+        db_con.close()
         return Expense.from_date_iso_8601_str(raw_expense_data[0], raw_expense_data[1], raw_expense_data[2], 
                                               raw_expense_data[3], raw_expense_data[4])
     
@@ -35,6 +36,7 @@ class ExpenseRepository:
             expenses.append(Expense.from_date_iso_8601_str(raw_expense_data[0], raw_expense_data[1], raw_expense_data[2], 
                                               raw_expense_data[3], raw_expense_data[4]))
         
+        db_con.close()
         return expenses
     
     def add_or_update_expense(self, expense : Expense):

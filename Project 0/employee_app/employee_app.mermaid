@@ -96,8 +96,7 @@ classDiagram
     class ApprovalRepository {
         get_approval_from_id(id : int)
         get_approval_from_expense_id(expense_id : id)
-        get_approvals_from_status(status : Status)
-        get_all_approvals()
+        get_all_approvals_from_user_id(user_id : int)
         add_or_update_approval(approval : Approval)
     }
 
