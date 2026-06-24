@@ -36,6 +36,11 @@ class MenuHelper():
     def display_numbered_list(ls : list):
         for i, v in enumerate(ls, start=1):
             print(f"{i}. {v}")
+    
+    @staticmethod
+    def display_paired_numbered_list(paired_ls : list):
+        for i, v in enumerate(paired_ls, start=1):
+            print(f"{i}. {v[0]}\n{v[1]}")
 
 if __name__ == "__main__":
     MenuHelper.display_header_1("Welcome!")

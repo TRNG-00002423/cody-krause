@@ -25,7 +25,7 @@ class ApprovalRepository:
         db_con = get_connection()
         db_cur = db_con.cursor()
         
-        db_cur.execute("SELECT * FROM approvals WHERE expense_id = ?", (id,))
+        db_cur.execute("SELECT * FROM approvals WHERE expense_id = ?", (expense_id,))
         
         raw_approval_data = db_cur.fetchone()
         
@@ -52,7 +52,7 @@ class ApprovalRepository:
             
         return user_approvals
     
-    def add_or_update_approval(approval : Approval):
+    def add_or_update_approval(self, approval : Approval):
         db_con = get_connection()
         db_cur = db_con.cursor()
         
@@ -63,7 +63,7 @@ class ApprovalRepository:
         if raw_approval_data == None:
             # add
             db_cur.execute("INSERT INTO approvals (expense_id, status, reviewer_id, comment, review_date) VALUES (?, ?, ?, ?, ?)", 
-                   (approval.expense_id, approval.status.name, approval.reviewer_id, approval.comment, datetime.isoformat(approval.review_date)))
+                   (approval.expense_id, approval.status.name, approval.reviewer_id, approval.comment, datetime.isoformat(datetime.now())))
         else:
             # update
             db_cur.execute("UPDATE approvals SET expense_id = ?, status = ?, reviewer_id = ?, comment = ?, review_date = ? WHERE id = ?", 

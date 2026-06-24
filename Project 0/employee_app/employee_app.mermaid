@@ -100,6 +100,16 @@ classDiagram
         add_or_update_approval(approval : Approval)
     }
 
+    class ApprovalService {
+        get_all_approvals_from_user_id(user_id : int)
+    }
+
+    class ExpenseService {
+        get_expenses_from_user_id(user_id : int)
+        add_or_update_expense(expense : Expense)
+        delete_pending_expense(expense : Expense)
+    }
+
 
 
     Approval o-- Status
@@ -118,6 +128,13 @@ classDiagram
     PendingSubmissionMenu o-- MenuHelper
 
     LoginMenu o-- LoginService
+    MainMenu o-- ExpenseService
+    PendingSubmissionMenu o-- ExpenseService
+    PendingSubmissionMenu o-- ApprovalService
+
+    ExpenseService o-- ExpenseRepository
+    ExpenseService o-- ApprovalRepository
+    ApprovalService o-- ApprovalRepository
 
     UserRepository *-- User
     LoginService o-- UserRepository
